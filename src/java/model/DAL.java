@@ -144,17 +144,18 @@ public class DAL {
         ArrayList arrDetails = null;
         
         conn = getConn();        
-        String sqlDetails = "select * from OrderDeatails where orderID=?";
+        String sqlDetails = "select o.orderID, o.productID, p.productName, p.price, o.amount, o.totalAmount from OrderDeatails o, Product p where o.productID = p.productID and o.orderID =?";
         try {
             ps = conn.prepareStatement(sqlDetails);
             ps.setString(1, orderIDStr);
             rs = ps.executeQuery();
             while (rs.next()) {
                 arrDetails = new ArrayList();
-                arrDetails.add(rs.getString(1));
                 arrDetails.add(rs.getString(2));
-                arrDetails.add(rs.getInt(3));
+                arrDetails.add(rs.getString(3));
                 arrDetails.add(rs.getInt(4));
+                arrDetails.add(rs.getInt(5));
+                arrDetails.add(rs.getInt(6));
                 list.add(arrDetails);
             } 
         } catch (Exception e) {

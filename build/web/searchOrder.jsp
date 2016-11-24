@@ -52,15 +52,15 @@
                 %>
                 <div class="col-md-8 container table-responsive">
                     <c:forEach var="info" items="${infoList}">
-                        <h2>Order No: <kbd>${info.get(0)}<kbd></h2>
+                        <h2>Order No: <kbd>${info[0]}<kbd></h2>
 		<hr/>
 		<ul>
                     <li>
                         <h3>Order Information</h3>
                         <ul>
-                            <li>Customer Name: ${info.get(3)}</li>
-                            <li>Order Date: ${info.get(1)}</li>
-                            <li>Total: ${info.get(2)}</li>	
+                            <li>Customer Name: ${info[3]}</li>
+                            <li>Order Date: ${info[1]}</li>
+                            <li>Total: <sup>$</sup>${info[2]}</li>	
                         </ul>
                     </li>
                     </c:forEach>                    
@@ -70,6 +70,8 @@
                             <thead>
                                 <tr>
                                     <th>Product ID</th>
+                                    <th>Product Name</th>
+                                    <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Subtotal</th>
                                 </tr>
@@ -77,9 +79,11 @@
                             <tbody>
                                 <c:forEach var="details" items="${detailsList}">
                                     <tr>
-                                        <td>${details.get(1)}</td>
-                                        <td>${details.get(2)}</td>
-                                        <td>${details.get(3)}</td>
+                                        <td>${details[0]}</td>
+                                        <td>${details[1]}</td>
+                                        <td><sup>$</sup>${details[2]}</td>
+                                        <td>${details[3]}</td>
+                                        <td><sup>$</sup>${details[4]}</td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
