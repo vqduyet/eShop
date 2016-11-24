@@ -39,12 +39,13 @@ public class AddServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         String productID = request.getParameter("id");
+        int qty = Integer.parseInt(request.getParameter("qty"));
         
         HashMap itemArray = new HashMap();
         DAL dal = new DAL();
         Product product = dal.getById(productID);
         if (product.getProductID().equals(productID)) {
-            CartItem cartItem = new CartItem(product.getProductID(), product.getProductName(), product.getPrice());
+            CartItem cartItem = new CartItem(product.getProductID(), product.getProductName(), product.getPrice(), qty);
             itemArray.put(productID, cartItem);
         }
 
@@ -52,33 +53,13 @@ public class AddServlet extends HttpServlet {
             HashMap<String, CartItem> sessionMap = (HashMap<String, CartItem>) session.getAttribute("cart");
             if (sessionMap.containsKey(productID)) {
                 int quantity = sessionMap.get(productID).getQuantity();
-                sessionMap.get(productID).setQuantity(++quantity);
-                /*
-                session.setAttribute("cart", sessionMap);
-                out.println("Added more quantity.<br/>");
-                out.println("Product Code: " + productID);
-                out.println("<br/>Quantity: " + quantity);
-                */
+                sessionMap.get(productID).setQuantity(qty);                
             } else {
-                sessionMap.putAll(itemArray);
-                /*
-                session.setAttribute("cart", sessionMap);
-                out.println("Added.<br/>");
-                out.println("Product Code: " + productID);
-                */
+                sessionMap.putAll(itemArray);                
             }            
-            session.setAttribute("cart", sessionMap);
-            /*
-            out.println("Added.<br/>");
-            out.println("Product Code: " + productID);
-            */
-            
+            session.setAttribute("cart", sessionMap);            
         } else {
             session.setAttribute("cart", itemArray);
-            /*
-            out.println("First item added.<br/>");
-            out.println("Product Code: " + productID);
-            */
         }
         request.getRequestDispatcher("ListServlet").forward(request, response);
     }

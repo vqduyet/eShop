@@ -30,9 +30,13 @@
                 <li><a href="ListServlet">Products</a></li>
                 <li>
                     <a href="ViewCartServlet" title="View Cart">                                
+                        <% if(!request.getRequestURI().equals("/DemoShoppingCart_Session/viewCart.jsp")) { %>
                         <sup class='cart-overview'><%=session_items%></sup>
                         <img src="resources/images/sites/checkout24.png" alt="Checkout" />
-                        <sub class='cart-overview'><sup>$ </sup><%=totalAmt%></sub>	                   	
+                        <sub class='cart-overview'><sup>$ </sup><%=totalAmt%></sub>
+                        <% } else { %>
+                        <img src="resources/images/sites/checkout24.png" alt="Checkout" />
+                        <% } %>
                     </a>
                 </li>
                 <li><a href="OrderServlet">Checkout</a></li>

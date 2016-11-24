@@ -24,6 +24,10 @@
         <servlet-name>SearchOrderServlet</servlet-name>
         <servlet-class>controller.SearchOrderServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditQtyServlet</servlet-name>
+        <servlet-class>controller.EditQtyServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListServlet</servlet-name>
         <url-pattern>/ListServlet</url-pattern>
@@ -48,6 +52,10 @@
         <servlet-name>SearchOrderServlet</servlet-name>
         <url-pattern>/SearchOrderServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditQtyServlet</servlet-name>
+        <url-pattern>/EditQtyServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -56,4 +64,12 @@
     <welcome-file-list>
         <welcome-file>ListServlet</welcome-file>
     </welcome-file-list>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/page404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/page404.jsp</location>
+    </error-page>
 </web-app>

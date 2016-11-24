@@ -27,12 +27,13 @@
             <!--contents-->
             <div id='contents-container' class="container">
                 <h1>Product List</h1>
-                <table class="table table-condensed table-responsive">
+                <table class="table table-condensed table-responsive table-hover">
                     <thead>
                         <tr>
                             <th>Product ID</th>
                             <th>Product Name</th>
                             <th>Price</th>
+                            <th>Quantity</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -41,8 +42,12 @@
                             <tr>
                                 <td>${p.productID}</td>
                                 <td>${p.productName}</td>
-                                <td>$${p.price}</td>
-                                <td><a href="AddServlet?id=${p.productID}" class="btn btn-default"><span class='glyphicon glyphicon-shopping-cart'></span> Add to Cart</a></td>
+                                <td><sup>$</sup>${p.price}</td>
+                                <form id='form-${p.productID}' method="post" action="AddServlet?id=${p.productID}">                              
+                                        <td><input type="number" name="qty" id="qty-${p.productID}" class='input-sm form-control center-block' min="1" value="1" style='width:30%;'/></td>                                
+                                    
+                                    <td><button type="submit" class='btn btn-default btnAddAction input-sm' data-button="${p.productID}"><span class='glyphicon glyphicon-shopping-cart'></span> Add to Cart</button></td>
+                                </form>
                             </tr>
                         </c:forEach>
                     </tbody>                    
@@ -50,6 +55,25 @@
             </div>                    
             <!--end of contents-->
         </div>
+            
 
+<script>
+$(document).ready(function() {	
+	
+	$('.btnAddAction').click(function(e){
+		var $button = $(this);
+		var buttonNumber = $button.data('button');
+		var quantity = $('#qty-'+buttonNumber).val();
+		if(quantity == "" || !(Math.floor(quantity) == quantity && $.isNumeric(quantity)) || quantity <= 0 ) {
+			alert('Quantity must be positive integer number!\nPlease re-enter.');
+                        $('#qty-'+buttonNumber).focus();
+			e.preventDefault();
+		}
+		else {
+			$('#form-'+buttonNumber).submit();
+		}
+	});
+});
+</script>  
     </body>
 </html>

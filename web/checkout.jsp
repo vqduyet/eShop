@@ -63,6 +63,7 @@
                         </tfoot>
                     </table>
                     <a href="ListServlet" class="btn btn-default"><span class='glyphicon glyphicon-shopping-cart'></span> Continue Shopping</a>
+                    <a href="ViewCartServlet" class="btn btn-info"><span class='glyphicon glyphicon-eye-open'></span> View Cart</a>
                 </div>
                 <!--client's info-->
                 <div class="table-responsive col-md-3">
@@ -105,7 +106,7 @@
                 <% } else { %>
                 <div>
                     <h3>There is no item in Ur Cart.</h3>          
-                    <a href="ListServlet" class="btn btn-default"><span class='glyphicon glyphicon-shopping-cart'></span> Continue Shopping</a>
+                    <a href="ListServlet" class="btn btn-default"><span class='glyphicon glyphicon-shopping-cart'></span> Continue Shopping</a>                    
                 </div>
                 <% } %>
                 <!--end of client's info-->      

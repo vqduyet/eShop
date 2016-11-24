@@ -7,23 +7,24 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.CartItem;
+import com.google.gson.*;
 
 /**
  *
  * @author Duyet
  */
-public class RemoveServlet extends HttpServlet {
+
+
+public class EditQtyServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,24 +39,42 @@ public class RemoveServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
         HttpSession session = request.getSession();
-        String productID = request.getParameter("id");
-        if (session.getAttribute("cart") != null) {
-            HashMap<String, CartItem> sessionMap = (HashMap<String, CartItem>) session.getAttribute("cart");
-            CartItem itemRemove = sessionMap.get(productID);
-            if (itemRemove != null) {
+        //get parameters
+        String productID = request.getParameter("code");
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        //process edit quantity
+        int total_price = 0;
+        int subtotal = 0;
+        HashMap<String, CartItem> sessionMap = (HashMap<String, CartItem>) session.getAttribute("cart");
+        CartItem itemEdit = sessionMap.get(productID);
+        if (itemEdit != null) {
+            if (quantity == 0) {
                 sessionMap.remove(productID);
+            } else {
+                sessionMap.get(productID).setQuantity(quantity);
+                subtotal = sessionMap.get(productID).getPrice() * quantity;
             }
-            if(sessionMap.size() > 0) {
-                session.setAttribute("cart", sessionMap);
-            }
-            else {
-                session.removeAttribute("cart");
-            }
-
         }
-        request.getRequestDispatcher("ViewCartServlet").forward(request, response);
+        //reset session cart
+        if (sessionMap.size() > 0) {
+            for (String key : sessionMap.keySet()) {
+                total_price += sessionMap.get(key).getPrice() * sessionMap.get(key).getQuantity();
+            }
+            session.setAttribute("cart", sessionMap);
+        } else {
+            session.removeAttribute("cart");
+        }
+        //transfer data to json using Gson package
+        List result = new ArrayList();
+        if (total_price > 0 && subtotal > 0) {
+            result.add(0, total_price);
+            result.add(1, subtotal);
+        }
+        String json = new Gson().toJson(result);
+        response.setContentType("application/json");
+        response.getWriter().write(json);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

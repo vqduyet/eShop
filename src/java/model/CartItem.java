@@ -24,6 +24,13 @@ public class CartItem {
         this.quantity = 1;
     }
 
+    public CartItem(String productID, String productName, int price, int quantity) {
+        this.productID = productID;
+        this.productName = productName;
+        this.price = price;
+        this.quantity = quantity;
+    }    
+
     public String getProductID() {
         return productID;
     }
