@@ -63,6 +63,7 @@
                         </tfoot>
                     </table>
                     <a href="ListServlet" class="btn btn-default"><span class='glyphicon glyphicon-shopping-cart'></span> Continue Shopping</a>
+                    <a href="ViewCartServlet" class="btn btn-info"><span class='glyphicon glyphicon-eye-open'></span> View Cart</a>
                 </div>
                 <!--client's info-->
                 <div class="table-responsive col-md-3">

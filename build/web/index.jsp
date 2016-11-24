@@ -27,7 +27,7 @@
             <!--contents-->
             <div id='contents-container' class="container">
                 <h1>Product List</h1>
-                <table class="table table-condensed table-responsive">
+                <table class="table table-condensed table-responsive table-hover">
                     <thead>
                         <tr>
                             <th>Product ID</th>
@@ -41,7 +41,7 @@
                             <tr>
                                 <td>${p.productID}</td>
                                 <td>${p.productName}</td>
-                                <td>$${p.price}</td>
+                                <td><sup>$</sup>${p.price}</td>
                                 <td><a href="AddServlet?id=${p.productID}" class="btn btn-default"><span class='glyphicon glyphicon-shopping-cart'></span> Add to Cart</a></td>
                             </tr>
                         </c:forEach>

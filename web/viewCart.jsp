@@ -27,7 +27,7 @@
             <!--contents-->
             <div id='contents-container' class="container">
                 <h1>Ur Cart</h1>                
-                <table class="table table-condensed table-responsive">
+                <table class="table table-condensed table-responsive table-hover">
                     <thead>
                         <tr>
                             <th>Product ID</th>

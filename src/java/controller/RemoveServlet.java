@@ -47,7 +47,7 @@ public class RemoveServlet extends HttpServlet {
             if (itemRemove != null) {
                 sessionMap.remove(productID);
             }
-            if(sessionMap != null) {
+            if(sessionMap.size() > 0) {
                 session.setAttribute("cart", sessionMap);
             }
             else {
