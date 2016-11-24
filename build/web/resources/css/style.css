@@ -1,0 +1,79 @@
+/* menu */
+body {
+	background-color: #fbfaf6;
+}
+.navbar-inverse {
+	background-color: #3c2209;
+	background-image: url(../images/sites/wood-background.jpg);
+}
+.navbar-brand {
+  padding: 0px; /* firefox bug fix */
+}
+.navbar-brand>img {
+  padding-top: 7px;
+  height: 160%;			  
+  width: auto;
+}			
+.navbar li {
+	padding: 0px 5px;
+}
+.navbar li:hover{				
+	background-color:#3c2209;				
+	border-radius: 10px;
+	font-size: 120%;				
+}
+
+
+/* product list */
+#product_list .img-sm {			
+	width: 100%;			
+}
+
+#product_list .img-lg {
+	display: block;
+	width: 40%;			
+}
+#product_list .list-group-item {
+	border-color: #FFFFFF;
+	border-radius: 7.5px;
+	margin-bottom: 10px;
+	background-color: #F5F5F5;	
+		
+}
+#product_list .list-group-item:hover {
+	border-color: #e0b864;
+	border-radius: 10px;
+	background-color: #fdfdff;			
+}
+.modal-header {
+	background-color: #af5310;
+	color: #FFFFFF;
+}
+
+/* cart table */
+.table-responsive {
+	background-color: white;
+	border-radius: 10px;
+	padding-bottom: 20px;
+	margin-bottom: 10px;
+}
+.table th, tfoot {
+    font-size: 150%;
+}
+.table th, td {
+	text-align: center;			
+}
+.table > tbody > tr > td {			
+	vertical-align: middle;
+}
+.btn-hide {
+	display:none;
+}
+/* cart overview on menu */
+.cart-overview {
+	color: #e0b864;
+}
+/* contents div */
+#contents-container {
+	margin-top: 50px;
+}
