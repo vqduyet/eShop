@@ -75,13 +75,13 @@
                                    id="cusName"
                                    name="cusName"
                                    class="form-control"
-                                   required="true"
+                                   required=""
                                    placeholder="Please enter your name"                                   
                                    />                
                         </div>
                         <div class="form-group">
                             <label for="orderDate">Order Date</label>
-                            <input type="date"                                   
+                            <input type="text"                                   
                                    id="orderDate"
                                    name="orderDate"
                                    class="form-control"
